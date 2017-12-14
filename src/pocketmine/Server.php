@@ -274,77 +274,77 @@ class Server{
 	/**
 	 * @return string
 	 */
-	public function getName() : string{
+	public function getName(){
 		return \pocketmine\NAME;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isRunning() : bool{
+	public function isRunning(){
 		return $this->isRunning === true;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getPocketMineVersion() : string{
+	public function getPocketMineVersion(){
 		return \pocketmine\VERSION;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getCodename() : string{
+	public function getCodename(){
 		return \pocketmine\CODENAME;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getVersion() : string{
+	public function getVersion(){
 		return ProtocolInfo::MINECRAFT_VERSION;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getApiVersion() : string{
+	public function getApiVersion(){
 		return \pocketmine\API_VERSION;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getFilePath() : string{
+	public function getFilePath(){
 		return \pocketmine\PATH;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getResourcePath() : string{
+	public function getResourcePath(){
 		return \pocketmine\RESOURCE_PATH;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getDataPath() : string{
+	public function getDataPath(){
 		return $this->dataPath;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getPluginPath() : string{
+	public function getPluginPath(){
 		return $this->pluginPath;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getMaxPlayers() : int{
+	public function getMaxPlayers(){
 		return $this->maxPlayers;
 	}
 
@@ -354,7 +354,7 @@ class Server{
 	 *
 	 * @return bool
 	 */
-	public function getOnlineMode() : bool{
+	public function getOnlineMode(){
 		return $this->onlineMode;
 	}
 
@@ -362,21 +362,21 @@ class Server{
 	 * Alias of {@link #getOnlineMode()}.
 	 * @return bool
 	 */
-	public function requiresAuthentication() : bool{
+	public function requiresAuthentication(){
 		return $this->getOnlineMode();
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getPort() : int{
+	public function getPort(){
 		return $this->getConfigInt("server-port", 19132);
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getViewDistance() : int{
+	public function getViewDistance(){
 		return max(2, $this->getConfigInt("view-distance", 8));
 	}
 
@@ -387,14 +387,14 @@ class Server{
 	 *
 	 * @return int
 	 */
-	public function getAllowedViewDistance(int $distance) : int{
+	public function getAllowedViewDistance($distance){
 		return max(2, min($distance, $this->memoryManager->getViewDistance($this->getViewDistance())));
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getIp() : string{
+	public function getIp(){
 		return $this->getConfigString("server-ip", "0.0.0.0");
 	}
 
@@ -408,14 +408,14 @@ class Server{
 	/**
 	 * @return bool
 	 */
-	public function getAutoSave() : bool{
+	public function getAutoSave(){
 		return $this->autoSave;
 	}
 
 	/**
 	 * @param bool $value
 	 */
-	public function setAutoSave(bool $value){
+	public function setAutoSave($value){
 		$this->autoSave = $value;
 		foreach($this->getLevels() as $level){
 			$level->setAutoSave($this->autoSave);
@@ -425,21 +425,21 @@ class Server{
 	/**
 	 * @return string
 	 */
-	public function getLevelType() : string{
+	public function getLevelType(){
 		return $this->getConfigString("level-type", "DEFAULT");
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function getGenerateStructures() : bool{
+	public function getGenerateStructures(){
 		return $this->getConfigBool("generate-structures", true);
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getGamemode() : int{
+	public function getGamemode(){
 		return $this->getConfigInt("gamemode", 0) & 0b11;
 	}
 
@@ -457,7 +457,7 @@ class Server{
 	 *
 	 * @return string
 	 */
-	public static function getGamemodeString(int $mode) : string{
+	public static function getGamemodeString($mode){
 		switch($mode){
 			case Player::SURVIVAL:
 				return "%gameMode.survival";
@@ -472,7 +472,7 @@ class Server{
 		return "UNKNOWN";
 	}
 
-	public static function getGamemodeName(int $mode) : string{
+	public static function getGamemodeName($mode){
 		switch($mode){
 			case Player::SURVIVAL:
 				return "Survival";
@@ -494,7 +494,7 @@ class Server{
 	 *
 	 * @return int
 	 */
-	public static function getGamemodeFromString(string $str) : int{
+	public static function getGamemodeFromString($str){
 		switch(strtolower(trim($str))){
 			case (string) Player::SURVIVAL:
 			case "survival":
@@ -526,7 +526,7 @@ class Server{
 	 * @param string $str
 	 * @return int
 	 */
-	public static function getDifficultyFromString(string $str) : int{
+	public static function getDifficultyFromString($str){
 		return Level::getDifficultyFromString($str);
 	}
 
@@ -534,49 +534,49 @@ class Server{
 	 * Returns Server global difficulty. Note that this may be overridden in individual Levels.
 	 * @return int
 	 */
-	public function getDifficulty() : int{
+	public function getDifficulty(){
 		return $this->getConfigInt("difficulty", 1);
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasWhitelist() : bool{
+	public function hasWhitelist(){
 		return $this->getConfigBool("white-list", false);
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getSpawnRadius() : int{
+	public function getSpawnRadius(){
 		return $this->getConfigInt("spawn-protection", 16);
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function getAllowFlight() : bool{
+	public function getAllowFlight(){
 		return $this->getConfigBool("allow-flight", false);
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isHardcore() : bool{
+	public function isHardcore(){
 		return $this->getConfigBool("hardcore", false);
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getDefaultGamemode() : int{
+	public function getDefaultGamemode(){
 		return $this->getConfigInt("gamemode", 0) & 0b11;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getMotd() : string{
+	public function getMotd(){
 		return $this->getConfigString("motd", \pocketmine\NAME . " Server");
 	}
 
@@ -653,7 +653,7 @@ class Server{
 	/**
 	 * @return int
 	 */
-	public function getTick() : int{
+	public function getTick(){
 		return $this->tickCounter;
 	}
 
@@ -662,7 +662,7 @@ class Server{
 	 *
 	 * @return float
 	 */
-	public function getTicksPerSecond() : float{
+	public function getTicksPerSecond(){
 		return round($this->currentTPS, 2);
 	}
 
@@ -671,7 +671,7 @@ class Server{
 	 *
 	 * @return float
 	 */
-	public function getTicksPerSecondAverage() : float{
+	public function getTicksPerSecondAverage(){
 		return round(array_sum($this->tickAverage) / count($this->tickAverage), 2);
 	}
 
@@ -680,7 +680,7 @@ class Server{
 	 *
 	 * @return float
 	 */
-	public function getTickUsage() : float{
+	public function getTickUsage(){
 		return round($this->currentUse * 100, 2);
 	}
 
@@ -689,7 +689,7 @@ class Server{
 	 *
 	 * @return float
 	 */
-	public function getTickUsageAverage() : float{
+	public function getTickUsageAverage(){
 		return round((array_sum($this->useAverage) / count($this->useAverage)) * 100, 2);
 	}
 
@@ -703,22 +703,22 @@ class Server{
 	/**
 	 * @return Player[]
 	 */
-	public function getLoggedInPlayers() : array{
+	public function getLoggedInPlayers(){
 		return $this->loggedInPlayers;
 	}
 
 	/**
 	 * @return Player[]
 	 */
-	public function getOnlinePlayers() : array{
+	public function getOnlinePlayers(){
 		return $this->playerList;
 	}
 
-	public function addRecipe(Recipe $recipe){
+	public function addRecipe($recipe){
 		$this->craftingManager->registerRecipe($recipe);
 	}
 
-	public function shouldSavePlayerData() : bool{
+	public function shouldSavePlayerData(){
 		return (bool) $this->getProperty("player.save-player-data", true);
 	}
 
@@ -743,7 +743,7 @@ class Server{
 	 *
 	 * @return CompoundTag
 	 */
-	public function getOfflinePlayerData(string $name) : CompoundTag{
+	public function getOfflinePlayerData(string $name){
 		$name = strtolower($name);
 		$path = $this->getDataPath() . "players/";
 		if($this->shouldSavePlayerData()){
@@ -877,7 +877,7 @@ class Server{
 	 *
 	 * @return Player[]
 	 */
-	public function matchPlayer(string $partialName) : array{
+	public function matchPlayer(string $partialName){
 		$partialName = strtolower($partialName);
 		$matchedPlayers = [];
 		foreach($this->getOnlinePlayers() as $player){
@@ -915,14 +915,14 @@ class Server{
 	/**
 	 * @return Level[]
 	 */
-	public function getLevels() : array{
+	public function getLevels(){
 		return $this->levels;
 	}
 
 	/**
 	 * @return Level|null
 	 */
-	public function getDefaultLevel() : ?Level{
+	public function getDefaultLevel(){
 		return $this->levelDefault;
 	}
 
@@ -933,7 +933,7 @@ class Server{
 	 *
 	 * @param Level|null $level
 	 */
-	public function setDefaultLevel(?Level $level) : void{
+	public function setDefaultLevel(?Level $level){
 		if($level === null or ($this->isLevelLoaded($level->getFolderName()) and $level !== $this->levelDefault)){
 			$this->levelDefault = $level;
 		}
@@ -944,7 +944,7 @@ class Server{
 	 *
 	 * @return bool
 	 */
-	public function isLevelLoaded(string $name) : bool{
+	public function isLevelLoaded(string $name){
 		return $this->getLevelByName($name) instanceof Level;
 	}
 
@@ -953,7 +953,7 @@ class Server{
 	 *
 	 * @return Level|null
 	 */
-	public function getLevel(int $levelId) : ?Level{
+	public function getLevel(int $levelId){
 		return $this->levels[$levelId] ?? null;
 	}
 
@@ -964,7 +964,7 @@ class Server{
 	 *
 	 * @return Level|null
 	 */
-	public function getLevelByName(string $name) : ?Level{
+	public function getLevelByName(string $name){
 		foreach($this->getLevels() as $level){
 			if($level->getFolderName() === $name){
 				return $level;
@@ -994,7 +994,7 @@ class Server{
 	 * @internal
 	 * @param Level $level
 	 */
-	public function removeLevel(Level $level) : void{
+	public function removeLevel(Level $level){
 		unset($this->levels[$level->getId()]);
 	}
 
@@ -1007,7 +1007,7 @@ class Server{
 	 *
 	 * @throws LevelException
 	 */
-	public function loadLevel(string $name) : bool{
+	public function loadLevel(string $name){
 		if(trim($name) === ""){
 			throw new LevelException("Invalid empty level name");
 		}
@@ -1131,7 +1131,7 @@ class Server{
 	 *
 	 * @return bool
 	 */
-	public function isLevelGenerated(string $name) : bool{
+	public function isLevelGenerated(string $name){
 		if(trim($name) === ""){
 			return false;
 		}
@@ -1356,7 +1356,7 @@ class Server{
 	 *
 	 * @return bool
 	 */
-	public function isWhitelisted(string $name) : bool{
+	public function isWhitelisted(string $name){
 		return !$this->hasWhitelist() or $this->operators->exists($name, true) or $this->whitelist->exists($name, true);
 	}
 
@@ -1365,7 +1365,7 @@ class Server{
 	 *
 	 * @return bool
 	 */
-	public function isOp(string $name) : bool{
+	public function isOp(string $name){
 		return $this->operators->exists($name, true);
 	}
 
@@ -1390,7 +1390,7 @@ class Server{
 	/**
 	 * @return string[]
 	 */
-	public function getCommandAliases() : array{
+	public function getCommandAliases(){
 		$section = $this->getProperty("aliases");
 		$result = [];
 		if(is_array($section)){
@@ -1412,7 +1412,7 @@ class Server{
 	/**
 	 * @return Server
 	 */
-	public static function getInstance() : Server{
+	public static function getInstance(){
 		if(self::$instance === null){
 			throw new \RuntimeException("Attempt to retrieve Server instance outside server thread");
 		}
@@ -2506,7 +2506,7 @@ class Server{
 	/**
 	 * Tries to execute a server tick
 	 */
-	private function tick() : bool{
+	private function tick(){
 		$tickTime = microtime(true);
 		if(($tickTime - $this->nextTick) < -0.025){ //Allow half a tick of diff
 			return false;
