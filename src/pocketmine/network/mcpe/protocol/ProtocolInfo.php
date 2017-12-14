@@ -39,14 +39,13 @@ interface ProtocolInfo{
 	/**
 	 * Actual Minecraft: PE protocol version
 	 */
-	public const CURRENT_PROTOCOL = 137;
-	const ACCEPTED_PROTOCOLS = ["137", "141", "150", "160"];
+	const CURRENT_PROTOCOL = 137;
+	const ACCEPTED_PROTOCOLS = [137, 141, 150, 160];
 	const MINECRAFT_VERSION = ["v1.2.0", "v1.2.1", "v1.2.2", "v1.2.5", "v1.2.6", "v1.2.7"];
-	public const MINECRAFT_VERSION = 'v1.2.6';
 	/**
 	 * Version number sent to clients in ping responses.
 	 */
-	public const MINECRAFT_VERSION_NETWORK = '1.2.6';
+	const MINECRAFT_VERSION_NETWORK = '1.2.6';
 
 	public const LOGIN_PACKET = 0x01;
 	public const PLAY_STATUS_PACKET = 0x02;
